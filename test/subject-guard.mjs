@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const box={window:{}};vm.createContext(box);
+vm.runInContext(fs.readFileSync(new URL('../js/maskops.js',import.meta.url),'utf8'),box);box.MaskOps=box.window.MaskOps;
+vm.runInContext(fs.readFileSync(new URL('../js/subject-guard.js',import.meta.url),'utf8'),box);
+const {reconcile}=box.window.SubjectGuard,w=256,h=256;
+const semantic=new Float32Array(w*h),primary=new Float32Array(w*h);
+for(let y=20;y<236;y++)for(let x=20;x<236;x++)semantic[y*w+x]=primary[y*w+x]=1;
+let intact=reconcile(primary,semantic,w,h);assert.equal(intact.mask,primary,'Agreed silhouette must be unchanged');
+for(let y=90;y<96;y++)for(let x=90;x<96;x++)primary[y*w+x]=0;
+let small=reconcile(primary,semantic,w,h);assert.equal(small.mask,primary,'Small internal gap must stay unchanged');
+for(let y=150;y<185;y++)for(let x=155;x<190;x++)primary[y*w+x]=0;
+let repaired=reconcile(primary,semantic,w,h);assert(repaired.restoredPixels>0);assert(repaired.mask[165*w+170]>.95,'Large missing foreground must be restored');assert.equal(repaired.mask[92*w+92],0,'Repair must not fill unrelated small gaps');
+const genuineBg=Float32Array.from(semantic);for(let y=140;y<195;y++)for(let x=145;x<200;x++)genuineBg[y*w+x]=0;
+let protectedGap=reconcile(primary,genuineBg,w,h);assert.equal(protectedGap.mask[165*w+170],0,'Semantic background must not be filled');
+console.log('PASS: intact silhouette, small gaps, large omission recovery, true background protection');

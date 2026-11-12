@@ -1,0 +1,16 @@
+{
+  "name": "sticker-press",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node server.mjs",
+    "build:matting": "esbuild src/photo-matting-worker.js --bundle --format=esm --platform=browser --minify --outfile=js/photo-matting-worker.bundle.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  },
+  "dependencies": {
+    "@imgly/background-removal": "^1.7.0",
+    "esbuild": "^0.28.2"
+  }
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sticker Press — make it stick.</title><meta name="description" content="Your photos, pressed into something personal. Make a tactile sticker and take it with you."><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="press.css"></head>
+<body>
+<header class="press-header"><a class="wordmark" href="./"><span class="press-icon">↗</span> sticker press<span class="registered">®</span></a><label class="upload" for="fileInput">＋ Upload image<input id="fileInput" type="file" accept="image/*" hidden></label></header>
+<main class="press-layout">
+<section class="preview-wrap"><div class="stage" id="stage"><canvas id="glCanvas" aria-label="Interactive sticker: drag to tilt and move"></canvas><div id="dropzone" class="dropzone"><p>Drop your photo here.</p></div>      <div class="editor" id="editor" hidden>
+        <canvas id="editCanvas"></canvas>
+        <div class="edit-toolbar">
+          <div class="tools" id="editTools" role="toolbar" aria-label="Cutout tools">
+            <button type="button" data-tool="tapAdd" class="active" title="Tap to add a subject">Tap +</button>
+            <button type="button" data-tool="tapRemove" title="Tap to remove">Tap −</button>
+            <button type="button" data-tool="brushAdd" title="Paint to add">Brush +</button>
+            <button type="button" data-tool="brushRemove" title="Paint to erase">Brush −</button>
+            <button type="button" data-tool="key" title="Key out a colour">Colour key</button>
+          </div>
+          <label class="mini brush-only">Brush <input id="brushSize" type="range" min="2" max="160" step="1" value="28"></label>
+          <label class="mini key-only">Tolerance <input id="keyTolerance" type="range" min="0.05" max="1" step="0.01" value="0.45"></label>
+          <div class="spacer"></div>
+          <button type="button" id="btnAuto" class="btn small">Auto detect</button>
+          <button type="button" id="btnUndo" class="btn small" disabled>Undo</button>
+          <button type="button" id="btnInvert" class="btn small">Invert</button>
+          <button type="button" id="btnClear" class="btn small">Clear</button>
+          <button type="button" id="btnReset" class="btn small">Reset</button>
+          <button type="button" id="btnDone" class="btn small primary">Done</button>
+        </div>
+        <p class="edit-hint" id="editHint"></p>
+      </div>
+
+<div id="statusbar" class="statusbar hidden" role="status"><div class="progress"><i id="progressBar"></i></div><span id="statusText"></span></div><button id="resetPose" class="reset-pose" aria-label="Reset position and tilt">↺ Reset view</button></div>
+<div class="preview-bottom"><div class="samples"><button data-sample="cat" class="sample active" title="Cat sticker">☺ Cat</button></div></div></section>
+<aside class="press-controls">
+<div class="control-section"><div class="section-label"><h2>Finish</h2></div><div class="materials" role="group" aria-label="Sticker material"><button data-material="Matte vinyl" class="material"><span class="finish matte"></span><span>Matte vinyl</span></button><button data-material="Holographic" class="material active"><span class="finish holo"></span><span>Holographic</span></button><button data-material="Mosaic foil" class="material"><span class="finish mosaic"></span><span>Mosaic foil</span></button></div></div>
+<div class="control-section"><div class="section-label"><h2>Settings</h2></div><label class="range-label" for="border">Border <output id="borderValue">18 px</output></label><div class="border-row"><input id="border" type="range" min="0" max="48" value="18"><label class="color-picker" title="Border colour"><input type="color" id="borderColor" value="#ffffff" aria-label="Border colour"></label></div><label class="range-label shine-label" for="shine">Finish intensity <output id="shineValue">65%</output></label><input id="shine" type="range" min="0" max="100" value="65"><div class="backdrop-row"><span>Backdrop</span><div class="backdrops" role="group" aria-label="Backdrop"><button data-bg="#eeede7" class="active" style="--swatch:#eeede7" aria-label="Paper background"></button><button data-bg="#dbe5da" style="--swatch:#dbe5da" aria-label="Sage background"></button><button data-bg="#e8c8b9" style="--swatch:#e8c8b9" aria-label="Peach background"></button><button data-bg="#232622" style="--swatch:#232622" aria-label="Dark background"></button></div></div><button id="btnEdit" class="refine" disabled>Refine cutout <span>↗</span></button></div>
+<div class="take-away"><button id="savePNG" class="export-main" disabled>Download PNG <span>↗</span></button><button id="saveClip" class="export-secondary" disabled>Save video <span>4s · WebM</span></button><p id="exportFeedback" role="status"></p></div></aside></main>
+<div class="legacy" aria-hidden="true"><button id="btnSample"></button><select id="presetSelect"><option value="">Custom</option></select><div class="panel-wrap"><span id="panelName"></span><span id="panelSub"></span><div id="panel"></div><button id="btnCopySettings"></button><button id="btnPasteSettings"></button><button id="btnResetSettings"></button></div><details><summary>Export</summary><div id="exportMenu"><button data-export="png" disabled>png</button><button data-export="png2x" disabled>png2x</button><button data-export="posed" disabled>posed</button><button data-export="cutout" disabled>cutout</button><button data-export="canvas" disabled>canvas</button><button data-export="clip" disabled>clip</button></div></details><button id="btnDelete" hidden></button><span id="stageHint"></span></div>
+<script src="js/maskops.js"></script><script src="js/photo-matting.js"></script><script src="js/subject-guard.js"></script><script src="js/segmenter.js"></script><script src="js/cardroom-finish.js"></script><script src="js/renderer.js"></script><script src="js/scene.js"></script><script src="js/ui.js"></script><script src="js/press-defaults.js"></script><script src="js/app.js"></script><script src="js/press.js"></script></body></html>
