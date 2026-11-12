@@ -1,43 +1,43 @@
-# Передача проекта · 11 ноября 2026
+# Project handoff · November 11, 2026
 
-## Состояние
+## State
 
-Передана текущая работающая локальная тулза после очистки интерфейса. Это полный код приложения с готовым bundle worker и локальной моделью, без рекламных картинок и фотографий. Фотоподборки и мокапы не являются зависимостями.
+The current working local tool is handed over after the interface cleanup. This is the complete application code with the prebuilt worker bundle and the local model, without promotional images and photos. Photo collections and mockups are not dependencies.
 
-## Карта кода
+## Code map
 
-| Файл | Назначение |
+| File | Purpose |
 |---|---|
-| index.html / press.css | Текущий видимый интерфейс |
-| styles.css | Базовые стили и редактор маски |
-| js/press.js | Кнопки, три материала, котик, экспорт PNG/видео |
-| js/app.js | Intake, записи, очередь обработки, редактор маски и сборка атласа |
-| js/maskops.js | Операции маски, signed distance, обводка |
-| js/scene.js / renderer.js | WebGL2, взаимодействие, snapshot, видео |
-| js/cardroom-finish.js | Перенесённые материалы Cardroom |
-| js/press-defaults.js / ui.js | Настройки и совместимость с базовым движком |
-| js/photo-matting.js | Обёртка Worker |
-| src/photo-matting-worker.js | Редактируемый источник primary matting |
-| js/photo-matting-worker.bundle.js | Готовый worker: не править вручную |
-| js/subject-guard.js | Консервативное восстановление крупных пропущенных частей людей/животных |
-| js/segmenter.js | Основная цепочка сегментации, semantic fallback и выбор точки |
-| vendor/matting | ISNet FP16, ONNX Runtime WASM и манифест |
-| server.mjs | Локальный статический сервер на loopback, PORT по умолчанию 4192 |
+| index.html / press.css | Current visible interface |
+| styles.css | Base styles and the mask editor |
+| js/press.js | Buttons, the three materials, the cat, PNG/video export |
+| js/app.js | Intake, records, processing queue, mask editor and atlas assembly |
+| js/maskops.js | Mask operations, signed distance, outline |
+| js/scene.js / renderer.js | WebGL2, interaction, snapshot, video |
+| js/cardroom-finish.js | Materials carried over from Cardroom |
+| js/press-defaults.js / ui.js | Settings and compatibility with the base engine |
+| js/photo-matting.js | Worker wrapper |
+| src/photo-matting-worker.js | Editable source of primary matting |
+| js/photo-matting-worker.bundle.js | Prebuilt worker: do not edit by hand |
+| js/subject-guard.js | Conservative recovery of large missed parts of people/animals |
+| js/segmenter.js | Main segmentation chain, semantic fallback and point selection |
+| vendor/matting | ISNet FP16, ONNX Runtime WASM and manifest |
+| server.mjs | Local static server on loopback, default PORT 4192 |
 
-`window.stickerApp` открывает записи, выбранный стикер, сцену и методы приложения для диагностики. selected — объект записи, а не строковый id. records — Map. Готовность: запись `phase === 'ready'` плюс сцена закончила reveal; во время интеракций проверить фактическую доступность кнопок экспорта.
+`window.stickerApp` exposes the records, the selected sticker, the scene and the app methods for diagnostics. `selected` is a record object, not a string id. `records` is a Map. Readiness: a record with `phase === 'ready'` plus the scene has finished its reveal; during interactions, check the actual availability of the export buttons.
 
-Старые элементы базового UI скрыты в .legacy, но ещё нужны для совместимости js/app.js. Удалять их следует только с соответствующим рефакторингом обращений. js/internet-finishes.js и vendor shader snapshots оставлены как исходный код, хотя соответствующие материалы убраны из picker.
+Old base-UI elements are hidden in .legacy but are still needed for js/app.js compatibility. Remove them only together with the corresponding refactoring of the references. js/internet-finishes.js and the vendor shader snapshots are kept as source code even though the corresponding materials were removed from the picker.
 
-## Важные решения
+## Key decisions
 
-Один объект за раз. Неудачная загрузка не должна уничтожать предыдущий стикер. PNG с прозрачностью не отправляется на AI-вырезание. Primary matting сохраняет мягкую альфу; outline отдельно строится по бинарной маске. SubjectGuard дополняет крупные semantic-пропуски, а не перерисовывает силуэт целиком. При недоступной дополнительной модели сохраняется primary matte.
+One object at a time. A failed upload must not destroy the previous sticker. A PNG with transparency is not sent to AI cutout. Primary matting preserves the soft alpha; the outline is built separately from the binary mask. SubjectGuard supplements large semantic gaps rather than redrawing the whole silhouette. If the additional model is unavailable, the primary matte is kept.
 
-Текущие материалы: Matte vinyl / Holographic / Mosaic foil. Убраны coarse noise normals, лишние материалы, Flower/Type и маркетинговые подписи. Векторный котик — встроенный пример.
+Current materials: Matte vinyl / Holographic / Mosaic foil. Removed: coarse noise normals, extra materials, Flower/Type and marketing captions. The vector cat is the built-in example.
 
-## Продуктовая рамка
+## Product framing
 
-Смотри PRODUCT.md. Основной сценарий: превратить собственное фото или графику в персональный стикер, придать материал, экспортировать. Возможные следующие направления: наборы стикеров, лист для печати с физическим размером, сохранение проектов, массовый экспорт и предпросмотр на вещах. Это идеи, а не уже реализованные функции.
+See PRODUCT.md. Main scenario: turn your own photo or artwork into a personal sticker, give it a material, export. Possible next directions: sticker sets, a print sheet with physical size, saving projects, bulk export and preview on objects. These are ideas, not implemented features.
 
-## Стартовый запрос для Codex
+## Starter prompt for Codex
 
-«Это текущий проект Sticker Press. Прочитай AGENTS.md, README.md, HANDOFF.md и SOURCE.md, запусти его и проверь загрузку, автоматическое и ручное вырезание, материалы, PNG и видео. Сохрани существующий минимальный интерфейс и локальную обработку. После этого помоги доработать: [наша задача]. Не пересоздавай проект с нуля.»
+"This is the current Sticker Press project. Read AGENTS.md, README.md, HANDOFF.md and SOURCE.md, run it and check upload, automatic and manual cutout, materials, PNG and video. Keep the existing minimal interface and local processing. After that, help improve: [our task]. Do not recreate the project from scratch."

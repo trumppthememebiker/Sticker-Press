@@ -1,20 +1,20 @@
-# Sticker Press — описание продукта
+# Sticker Press — product description
 
-**Sticker Press превращает ваши фотографии и графику в авторские стикеры: вырезает объект, добавляет аккуратную обводку и материал, позволяет сохранить результат.**
+**Sticker Press turns your photos and artwork into custom stickers: it cuts out the subject, adds a clean outline and a material, and lets you save the result.**
 
-Питомец, друг, семейный момент, собственный рисунок или логотип — основой может стать любое своё изображение. Несколько действий вместо ручного вырезания и настройки эффектов в графическом редакторе.
+A pet, a friend, a family moment, your own drawing or logo: any image of your own can be the base. A few actions instead of manual cutting and effect tuning in a graphics editor.
 
-## Для кого и зачем
+## Who it is for and why
 
-- **Личный подарок.** Сделать набор с лицом друга, питомцем или общими воспоминаниями — для ноутбука, блокнота, коробки с подарком.
-- **Маленький бренд или автор.** Превратить логотип, маскота, продукт или иллюстрацию в стикеры для упаковки, заказов, мероприятий и подарков покупателям.
-- **Комьюнити.** Создать небольшую коллекцию с внутренними шутками и символами команды, клуба или сообщества.
-- **Цифровое творчество.** Сохранить прозрачный PNG для дизайна или короткое видео с бликами материала для публикации.
+- **A personal gift.** Make a set with a friend's face, a pet or shared memories, for a laptop, a notebook or a gift box.
+- **A small brand or creator.** Turn a logo, mascot, product or illustration into stickers for packaging, orders, events and giveaways.
+- **A community.** Create a small collection with inside jokes and symbols of a team, club or community.
+- **Digital creativity.** Save a transparent PNG for design work, or a short video with material highlights for publishing.
 
-## Короткий текст для передачи
+## Short handoff text
 
-Sticker Press — простая тулза для авторских стикеров из фото и графики. Загружаешь изображение, убираешь фон, выбираешь обводку и материал — и сохраняешь готовый стикер. Можно сделать персональный подарок с другом или питомцем, оформить свои вещи либо подготовить стикеры маленькому бренду для упаковки и подарков клиентам.
+Sticker Press is a simple tool for custom stickers from photos and artwork. You upload an image, remove the background, choose an outline and a material, and save the finished sticker. You can make a personal gift with a friend or a pet, decorate your own things, or prepare stickers for a small brand's packaging and customer gifts.
 
-## Как говорить о возможностях
+## How to talk about the capabilities
 
-«Из вашей фотографии — в ваш стикер». Обещание продукта — простой путь к личной вещи, которую хочется сохранить, подарить или наклеить. Фото со сложным фоном иногда требует ручного уточнения. Тулза пока не печатает и не доставляет стикеры; физических размеров и плоттерной подготовки в текущей версии нет. Материалы на экране имитируют покрытие, а физический результат зависит от печати и бумаги/плёнки.
+"From your photo to your sticker." The product's promise is a simple path to a personal item you want to keep, give away or stick on. A photo with a complex background sometimes needs manual refinement. The tool does not yet print or deliver stickers; there are no physical sizes or plotter preparation in the current version. On-screen materials imitate a coating, and the physical result depends on the print and the paper/film.

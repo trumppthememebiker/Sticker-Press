@@ -1,40 +1,40 @@
 # Sticker Press
 
-Небольшая веб-тулза для создания авторских стикеров из фотографий и готовой графики. Загрузка → автоматическое вырезание → материал и обводка → прозрачный PNG или короткий видеоклип.
+A small web tool for making custom stickers from photos and ready-made artwork. Upload → automatic cutout → material and outline → transparent PNG or a short video clip.
 
-## Быстрый запуск
+## Quick start
 
-1. Установить Node.js 20 или новее, если его нет.
-2. Распаковать пакет целиком. На Windows открыть `START.cmd`; либо выполнить `npm start` в этой папке.
-3. Открыть http://127.0.0.1:4192 в современном Chrome или Edge с WebGL2.
+1. Install Node.js 20 or newer if you don't have it.
+2. Get the whole project folder (clone the repository or unpack the archive). On Windows, open `START.cmd`; or run `npm start` in this folder.
+3. Open http://127.0.0.1:4192 in a modern Chrome or Edge with WebGL2.
 
-Для обычного запуска **не нужны npm install, Python, API-ключи или сборка**. Основная модель и готовый worker входят в пакет. Не открывать index.html через file://.
+For a regular launch you **don't need npm install, Python, API keys or a build step**. The main model and the prebuilt worker are included. Don't open index.html via file://.
 
-Если порт занят: PowerShell `$env:PORT=4193; npm start`, затем http://127.0.0.1:4193. Остановка сервера — Ctrl+C.
+If the port is busy: PowerShell `$env:PORT=4193; npm start`, then http://127.0.0.1:4193. Stop the server with Ctrl+C.
 
-## Что работает
+## What works
 
-- Один активный стикер; загрузка фото/изображения, включая прозрачные PNG.
-- Автоматическое удаление фона локальной ISNet FP16 в Web Worker; прозрачная графика сохраняет исходную альфу.
-- Ручное уточнение: добавление/удаление кистью, выбор точки, цветовой ключ, Undo, Reset, Invert.
-- Matte vinyl, Holographic, Mosaic foil; цвет и толщина обводки, интенсивность материала, фон предпросмотра.
-- Перетаскивание и наклон стикера, сброс положения; встроенный пример — котик.
-- Экспорт прозрачного PNG и четырёхсекундного видео (WebM/MP4 — в зависимости от браузера).
+- One active sticker; upload of photos/images, including transparent PNGs.
+- Automatic background removal with a local ISNet FP16 model in a Web Worker; transparent artwork keeps its original alpha.
+- Manual refinement: add/erase brush, point selection, color key, Undo, Reset, Invert.
+- Matte vinyl, Holographic, Mosaic foil; outline color and thickness, material intensity, preview background.
+- Drag and tilt the sticker, reset position; a built-in example, a cat.
+- Export a transparent PNG and a four-second video (WebM/MP4, depending on the browser).
 
-Фото обрабатываются в браузере; API загрузки фото на сервер отсутствует. Основная модель работает с локальными файлами пакета. Для шрифта, дополнительной semantic-проверки, резервного сегментатора и выбора точки используется интернет (Google Fonts / MediaPipe CDN). Это не полностью автономная сборка всех дополнительных возможностей.
+Photos are processed in the browser; there is no API for uploading photos to a server. The main model runs from the local files in the package. The font, the additional semantic check, the fallback segmenter and point selection use the internet (Google Fonts / MediaPipe CDN). This is not a fully offline build of all the additional features.
 
-## Разработка в Codex
+## Development in Codex
 
-Открыть всю папку Sticker-Press как проект. Сначала прочитать AGENTS.md и HANDOFF.md. Исходники и зафиксированный package-lock.json включены.
+Open the whole Sticker-Press folder as a project. First read AGENTS.md and HANDOFF.md. Sources and the pinned package-lock.json are included.
 
-Для изменения worker: `npm ci`, затем `npm run build:matting`. Для обычных HTML/CSS/JS правок достаточно перезагрузить страницу. Модель уже включена; `download-matting-assets.py` нужен только для восстановления потерянных файлов, требует Python.
+To change the worker: `npm ci`, then `npm run build:matting`. For regular HTML/CSS/JS edits, just reload the page. The model is already included; `download-matting-assets.py` is only needed to restore lost files and requires Python.
 
-Проверка восстановления частей силуэта: `node test/subject-guard.mjs`. `test/e2e.mjs` — исходный upstream-тест старого интерфейса, а не актуальная приёмка Sticker Press; не считать его готовым набором тестов текущего UI.
+To check silhouette-part recovery: `node test/subject-guard.mjs`. `test/e2e.mjs` is the original upstream test for the old interface, not the current Sticker Press acceptance suite; do not treat it as a ready-made test set for the current UI.
 
-## Границы текущей версии
+## Limits of the current version
 
-Сложные фоны и тонкие детали иногда требуют ручной корректировки. PNG — растровый экспорт без калиброванного физического размера, bleed или контура плоттерной резки. Экранная голография не создаёт физическую фольгу при печати. Для физических стикеров нужны печать и подходящий материал.
+Complex backgrounds and thin details sometimes need manual correction. PNG is a raster export without a calibrated physical size, bleed or plotter cut contour. The on-screen holographic effect does not produce physical foil when printed. Physical stickers need printing and a suitable material.
 
-Пакет передаёт текущий прототип для совместной доработки. Происхождение и лицензии компонентов описаны в SOURCE.md и vendor/: upstream sticker-shader не содержал LICENSE, background-removal использует AGPL. Эти условия сохранены в пакете; собственная лицензия поверх чужого кода не назначалась.
+The package hands over the current prototype for joint development. The origin and licenses of the components are described in SOURCE.md and vendor/: the upstream sticker-shader had no LICENSE, and background-removal is AGPL. These terms are preserved in the package; no license of its own was assigned on top of third-party code.
 
-Фотографии, генерации, мокапы, пользовательские экспорты, node_modules, git-история и кэши в пакет не входят. Котик встроен в исходный JS и остаётся стартовым примером.
+Photos, generations, mockups, user exports, node_modules, git history and caches are not included. The cat is embedded in the JS source and stays the starter example.

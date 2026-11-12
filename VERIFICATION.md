@@ -1,20 +1,20 @@
-# Проверка пакета · 11 ноября 2026
+# Package verification · November 11, 2026
 
-Проверялся архив, распакованный в отдельную папку, а не исходная рабочая директория. Приложение запущено `node server.mjs` с PORT=4193. На стороне пакета npm install и сборка не выполнялись.
+The archive was checked after unpacking into a separate folder, not the original working directory. The app was started with `node server.mjs` with PORT=4193. On the package side, npm install and build were not run.
 
-Среда: Windows, Chrome через Playwright; библиотека Playwright использована из рабочей среды проверки, не является условием запуска переданного приложения.
+Environment: Windows, Chrome via Playwright; the Playwright library was used from the verification environment and is not a requirement for running the delivered app.
 
-Пройдено:
+Passed:
 
-- ZIP читается без ошибок CRC; файл-манифест содержит размеры и SHA-256 содержимого.
-- Страница загружается; стартовый Cat получает исходную alpha-маску; доступен PNG после reveal.
-- В интерфейсе один пример и три материала: Matte vinyl, Holographic, Mosaic foil.
-- Внешнее по отношению к пакету тестовое фото шлема загружено через file input; primary matting успешно завершён с maskKind=matting. Тестовое фото в архив не включено.
-- Все три материала переключены через UI.
-- Refine cutout открывается, Done возвращает к стикеру.
-- Download PNG реально инициировал и завершил скачивание sticker-press.png.
-- Save video реально инициировал и завершил скачивание sticker-press.webm (4 секунды).
-- Ошибки pageerror JavaScript во время этой проверки отсутствовали.
-- `node test/subject-guard.mjs`: PASS для сохранения целого силуэта, небольших просветов, восстановления крупного пропуска и защиты настоящего фона.
+- The ZIP reads without CRC errors; the manifest file contains sizes and SHA-256 of the contents.
+- The page loads; the starter Cat gets its source alpha mask; PNG is available after reveal.
+- The interface has one example and three materials: Matte vinyl, Holographic, Mosaic foil.
+- An external test photo of a helmet (not part of the package) was loaded via the file input; primary matting completed successfully with maskKind=matting. The test photo is not included in the archive.
+- All three materials were switched via the UI.
+- Refine cutout opens, Done returns to the sticker.
+- Download PNG actually started and completed the download of sticker-press.png.
+- Save video actually started and completed the download of sticker-press.webm (4 seconds).
+- No JavaScript pageerror errors during this check.
+- `node test/subject-guard.mjs`: PASS for keeping the whole silhouette, small gaps, recovering a large omission and protecting the real background.
 
-Эта проверка подтверждает переносимость пакета и основные действия. Она не является проверкой всех типов изображений, браузеров, всех кистей редактора, печати или коммерческого развёртывания. Интернет был доступен; полный offline-режим дополнительных MediaPipe-инструментов не заявляется.
+This check confirms package portability and the main actions. It is not a check of all image types, browsers, all editor brushes, printing or commercial deployment. The internet was available; fully offline mode of the additional MediaPipe tools is not claimed.
