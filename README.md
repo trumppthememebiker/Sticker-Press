@@ -2,6 +2,27 @@
 
 A small web tool for making custom stickers from photos and ready-made artwork. Upload → automatic cutout → material and outline → transparent PNG or a short video clip.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="docs/images/screenshot-1.png" alt="Holographic finish on a logo cutout"></td>
+    <td><img src="docs/images/screenshot-2.png" alt="Holographic finish on a character cutout"></td>
+  </tr>
+  <tr>
+    <td><img src="docs/images/screenshot-3.png" alt="Mosaic foil finish on a product cutout"></td>
+    <td><img src="docs/images/screenshot-4.png" alt="Holographic finish on a person cutout"></td>
+  </tr>
+</table>
+
+### Concept mockups
+
+Illustrations of how printed stickers could look. The tool itself exports a transparent PNG or a short video; it does not generate these previews and does not print.
+
+<img src="docs/images/mockup-1.jpg" alt="Concept mockup: stickers on a motorcycle tank">
+<img src="docs/images/mockup-2.jpg" alt="Concept mockup: stickers on a PC case">
+<img src="docs/images/mockup-3.jpg" alt="Concept mockup: stickers on a console case">
+
 ## Quick start
 
 1. Install Node.js 20 or newer if you don't have it.
